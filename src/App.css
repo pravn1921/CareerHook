@@ -32,6 +32,7 @@
 .gradient-text{
   background: linear-gradient(90deg, #ff2525, #ad00bd, #496dff, #ad00bd, #ff2525);
   background-size: 200%;
+  padding-right: 1px;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: animate 10s linear infinite;
