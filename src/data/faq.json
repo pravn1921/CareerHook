@@ -1,0 +1,34 @@
+[
+  {
+    "question": "How do I apply for a job?",
+    "answer": "To apply for a job, browse the available listings, select a job, and submit your resume along with the application form."
+  },
+  {
+    "question": "How do I post a job?",
+    "answer": "To post a job, navigate to the employer section, create a job listing, set the job requirements, and publish it for candidates to view."
+  },
+  {
+    "question": "How can I track my job application?",
+    "answer": "You can track your job application by visiting the application status page, where you will receive updates and notifications about your application."
+  },
+  {
+    "question": "How do I receive applications as an employer?",
+    "answer": "As an employer, you can view received applications in the employer dashboard, where you can shortlist candidates and schedule interviews."
+  },
+  {
+    "question": "What should I do if I forget my password?",
+    "answer": "If you forget your password, click on the 'Forgot Password' link on the login page to reset it via your registered email."
+  },
+  {
+    "question": "Can I edit my job application after submission?",
+    "answer": "Yes, you can edit your job application before the application deadline by accessing the application details in your account."
+  },
+  {
+    "question": "How do I delete my account?",
+    "answer": "To delete your account, go to the account settings and select the 'Delete Account' option. Follow the prompts to complete the process."
+  },
+  {
+    "question": "Is there a fee to use CareerHook?",
+    "answer": "No, CareerHook is completely free of cost for both job seekers and employers."
+  }
+]
