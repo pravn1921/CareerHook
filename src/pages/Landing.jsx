@@ -10,7 +10,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 
 const Landing = () => {
   return (
-    <main className='flex flex-col gap-10 sm:gap-20 py-10 sm:py-20'>
+    <main className='flex flex-col gap-10 sm:gap-20 lg:gap-14 py-10 sm:py-16'>
       <section className='text-center'>
         <h1 className='flex flex-col lg:gap-2 md:gap-2 sm:gap-2 items-center justify-center gradient-title text-5xl font-extrabold 
         sm:text-6xl lg:text-8xl tracking-tighter py-4'>
