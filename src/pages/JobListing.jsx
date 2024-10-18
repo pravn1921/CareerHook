@@ -117,7 +117,7 @@ const JobListing = () => {
           Clear Filters
         </Button>
       </div>
-
+              
       {loadingJobs && (
         <BarLoader className='mt-4' width={'100%'} color='#36d7b7' />
       )}
