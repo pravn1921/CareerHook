@@ -1,4 +1,5 @@
 import { getSingleJob, updateHiringStatus } from '@/api/apiJobs';
+import ApplyJob from '@/components/ApplyJob';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import useFetch from '@/hooks/useFetch';
 import { useUser } from '@clerk/clerk-react'
@@ -52,7 +53,7 @@ const Job = () => {
 
       <div className='flex justify-between'>
         <div className='flex gap-2'>
-          <MapPinIcon color='yellow'/>
+          <MapPinIcon stroke='black' fill='white'/>
           {job?.location}
         </div>
         <div className='flex gap-2'>
@@ -65,13 +66,14 @@ const Job = () => {
             </> 
             ) : (
             <>
-              <DoorClosed fill='red' /> Closed
+              <DoorClosed color='red' /> Closed
             </>
           )} 
         </div>
       </div>
 
       {/* hiring status */}
+      {loadingHiringStatus && <BarLoader width={'100%'} color='#36d7b7' />}
       {job?.recruiter_id === user?.id && (
         <Select onValueChange={handleStatusChange}>
           <SelectTrigger className={`w-full ${job?.isOpen ? "bg-green-900" : "bg-red-900"}`}>
@@ -100,6 +102,14 @@ const Job = () => {
       />
 
       {/* render applications */}
+      {job?.recruiter_id !== user?.id &&(
+        <ApplyJob 
+          job={job}
+          user={user}
+          fetchJob={fnJob}
+          applied={job?.applications?.find((ap) => ap.candidate_id === user.id)}
+        />
+      )}
 
     </div>
   )
