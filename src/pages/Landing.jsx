@@ -55,9 +55,8 @@ const Landing = () => {
         className='w-full rounded-sm'
       />
 
-
-      <section className='grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-10 mx-5'>
-        <Card>
+      <section className='grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 mx-5 my-5'>
+        <Card className='gradient-border'>
           <CardHeader>
             <CardTitle className='font-bold'>Job Seekers</CardTitle>
           </CardHeader>
@@ -66,7 +65,7 @@ const Landing = () => {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className='gradient-border'>
           <CardHeader>
             <CardTitle className='font-bold'>Employers</CardTitle>
           </CardHeader>
