@@ -57,7 +57,7 @@ const Job = () => {
           {job?.location}
         </div>
         <div className='flex gap-2'>
-          <BriefcaseBusiness fill='#954535' fillOpacity={0.5} /> {job?.applications?.length} Applicants
+          <BriefcaseBusiness fill='#954535' fillOpacity={0.5} /> {job?.applications?.length} {job?.applications?.length > 1 ? "Applicants" : "Applicant"}
         </div>
         <div className='flex gap-2'>
           {job?.isOpen ? (
