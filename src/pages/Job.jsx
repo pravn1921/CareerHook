@@ -1,9 +1,10 @@
 import { getSingleJob, updateHiringStatus } from '@/api/apiJobs';
+import ApplicationCard from '@/components/ApplicationCard';
 import ApplyJob from '@/components/ApplyJob';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import useFetch from '@/hooks/useFetch';
 import { useUser } from '@clerk/clerk-react'
-import MDEditor from '@uiw/react-md-editor';
+import MDEditor, { hr } from '@uiw/react-md-editor';
 import { BriefcaseBusiness, DoorClosed, DoorOpen, MapPinIcon } from 'lucide-react';
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom';
@@ -109,6 +110,18 @@ const Job = () => {
           fetchJob={fnJob}
           applied={job?.applications?.find((ap) => ap.candidate_id === user.id)}
         />
+      )} 
+
+      {job?.applications?.length > 0 && job?.recruiter_id === user?.id && (
+        <div className='flex flex-col gap-2'>
+          <h2 className='text-2xl sm:text-3xl font-bold mt-5 mb-3'>Applications</h2>
+          <hr />
+          {job?.applications.map((application) => {
+            return(
+              <ApplicationCard key={application.id} application={application} />
+            );
+          })}
+        </div>
       )}
 
     </div>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import { Button } from './ui/button'
-import { SignedIn, SignedOut, SignIn, SignInButton, UserButton, useUser } from '@clerk/clerk-react'
+import { SignedIn, SignedOut, SignIn, UserButton, useUser } from '@clerk/clerk-react'
 import { BriefcaseBusiness, Heart, PenBox } from 'lucide-react'
+import { Button } from './ui/button'
 
 const Header = () => {
 
@@ -37,14 +37,14 @@ const Header = () => {
             </Button>
           </SignedOut>
           <SignedIn>
-            { user?.unsafeMetadata?.role === "recruiter" && 
+            {user?.unsafeMetadata?.role === "recruiter" && (
               <Link to="/post-job">
                 <Button variant="destructive" className="rounded-full">
                   <PenBox size={20} className='mr-2' />
                   Post a Job
                 </Button>
               </Link>
-            }
+            )}
             <UserButton
               appearance={{
                 elements: {
@@ -66,6 +66,7 @@ const Header = () => {
                   labelIcon={<Heart size={15} />}
                   href='/saved-job'
                 />
+                <UserButton.Action label='manageAccount' />
               </UserButton.MenuItems>
             </UserButton>
           </SignedIn>  
