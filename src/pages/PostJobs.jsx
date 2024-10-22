@@ -10,9 +10,11 @@ import useFetch from '@/hooks/useFetch';
 import { useUser } from '@clerk/clerk-react';
 import { BarLoader } from 'react-spinners';
 import { getCompanies } from '@/api/apiCompanies';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import MDEditor from '@uiw/react-md-editor';
 import { Button } from '@/components/ui/button';
+import { addNewJob } from '@/api/apiJobs';
+import AddCompanyDrawer from '@/components/AddCompanyDrawer';
 
 const schema = z.object({
   title: z.string().min(1, { message: "Title is required" }),
@@ -25,6 +27,7 @@ const schema = z.object({
 const PostJobs = () => {
 
   const { user, isLoaded } = useUser();
+  const navigate = useNavigate();
 
   const {
     register, handleSubmit, control, formState: { errors }
@@ -48,6 +51,26 @@ const PostJobs = () => {
       fnCompanies();
   }, [isLoaded]);
 
+  const {
+    loading: loadingCreateJob,
+    error: errorCreateJob,
+    data: dataCreateJob,
+    fn: fnCreateJob,
+  } = useFetch(addNewJob);
+
+  const onSubmit = (data) => {
+    fnCreateJob({
+      ...data,
+      recruiter_id: user.id,
+      isOpen: true,
+    });
+  };
+
+  useEffect(() => {
+    if(dataCreateJob?.length > 0)
+      navigate('/jobs');
+  }, [loadingCreateJob]);
+
   if (!isLoaded || loadingCompanies) {
     return <BarLoader className='mb-4' width={'100%'} color='#36d7b7' />
   }
@@ -62,7 +85,7 @@ const PostJobs = () => {
         Post a Job
       </h1>
 
-      <form className='flex flex-col gap-4 p-4 pb-0'>
+      <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4 p-4 pb-0'>
         <Input placeholder="Job Title" {...register("title")} />
         {errors.title && <p className="text-red-500">{errors.title.message}</p>}
 
@@ -128,6 +151,8 @@ const PostJobs = () => {
               </Select>
             )}
           />
+
+          <AddCompanyDrawer fetchCompanies={fnCompanies} />
         </div>
 
         {errors.location && (
@@ -149,7 +174,10 @@ const PostJobs = () => {
         {errors.requirements && (
           <p className="text-red-500">{errors.requirements.message}</p>
         )}
-
+        {errorCreateJob?.message && (
+          <p className="text-red-500">{errorCreateJob?.message}</p>
+        )}
+        {loadingCreateJob && <BarLoader width={'100%'} color='#36d7b7' />}
         <Button className='mt-2' variant='blue' type='submit' size='lg'>
           Submit
         </Button>
