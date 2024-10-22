@@ -98,7 +98,7 @@ export async function addNewJob(token, _, jobData) {
 
   const { data, error } = await supabase
       .from('jobs')
-      .update([jobData])
+      .insert([jobData])
       .select();
 
     if(error) {

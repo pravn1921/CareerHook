@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form';
 import { z } from 'zod'
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from './ui/drawer';
@@ -7,6 +7,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { addNewCompany } from '@/api/apiCompanies';
 import useFetch from '@/hooks/useFetch';
+import { BarLoader } from 'react-spinners';
 
 const schema = z.object({
   name: z.string().min(1, { message: 'Company name is required' }),
@@ -16,10 +17,8 @@ const schema = z.object({
       (file) =>
         file[0] && 
         (file[0].type === 'image/png' || 
-          file[0].type === 'image/jpeg' ||
-          file[0].type === 'image/webp' ||
-          file[0].type === 'image/svg'),
-        { message: 'only images are allowed' }
+          file[0].type === 'image/jpeg'),
+        { message: 'Only images are allowed' }
     ),
 });
 
@@ -40,9 +39,16 @@ const AddCompanyDrawer = ({ fetchCompanies }) => {
     fn: fnAddCompany,
   } = useFetch(addNewCompany);
 
-  const onSubmit = () => {
+  const onSubmit = (data) => {
+    fnAddCompany({
+      ...data,
+      logo: data.logo[0]
+    });
+  };
 
-  }
+  useEffect(() => {
+    if(dataAddCompany?.length > 0) fetchCompanies();
+  }, [loadingAddCompany]);
 
   return (
     <Drawer>
@@ -75,7 +81,10 @@ const AddCompanyDrawer = ({ fetchCompanies }) => {
         </form>
         {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
         {errors.logo && <p className='text-red-500'>{errors.logo.message}</p>}
-
+        {errorAddCompany?.message && (
+          <p className='text-red-500'>{errorAddCompany?.message}</p>
+        )}
+        {loadingAddCompany && <BarLoader width={'100%'} color='#36d7b7' />}
         <DrawerFooter>
           <DrawerClose>
             <Button variant="secondary" type='button' className='hover:bg-red-500'>Cancel</Button>
