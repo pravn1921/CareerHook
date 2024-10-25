@@ -7,7 +7,9 @@ const AppLayout = () => {
       <div className='grid-background'></div>
         <main className='min-h-screen mx-auto'>
           <Header />
-          <Outlet />
+          <div className=''>
+            <Outlet />
+          </div>
         </main>
     </div>
   )

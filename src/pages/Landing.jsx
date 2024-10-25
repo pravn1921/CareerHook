@@ -12,7 +12,7 @@ const Landing = () => {
   return (
     <main className='flex flex-col gap-10 sm:gap-20 lg:gap-14 py-10 sm:py-16'>
       <section className='text-center'>
-        <h1 className='flex flex-col lg:gap-2 md:gap-2 sm:gap-2 items-center justify-center gradient-title text-5xl font-extrabold 
+        <h1 className='flex flex-col lg:gap-2 md:gap-2 sm:gap-2 items-center justify-center gradient-title text-6xl font-extrabold 
         sm:text-6xl lg:text-8xl tracking-tighter py-4'>
           Bring your passion &
           <span> Earn <span className='gradient-text'>platform</span> </span>
@@ -23,10 +23,10 @@ const Landing = () => {
       </section>
       <div className='flex gap-6 justify-center'>
         <Link to="/jobs">
-          <Button variant="blue" size="xl" className='h-10'>Find Jobs</Button>
+          <Button variant="blue" size="xl" className='h-14'>Find Jobs</Button>
         </Link>
         <Link to="/post-job">
-          <Button variant="destructive" size="xl" className='h-10'>Post a Job</Button>
+          <Button variant="destructive" size="xl" className='h-14'>Post a Job</Button>
         </Link>
       </div>
 
@@ -88,7 +88,7 @@ const Landing = () => {
           {faqs.map((faq, index) => {
             return (
               <AccordionItem key={index} value={`item-${index+1}`}>
-                <AccordionTrigger>{faq.question}</AccordionTrigger>
+                <AccordionTrigger className='text-left'>{faq.question}</AccordionTrigger>
                 <AccordionContent>
                   {faq.answer}
                 </AccordionContent>
