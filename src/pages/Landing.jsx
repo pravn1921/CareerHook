@@ -23,10 +23,10 @@ const Landing = () => {
       </section>
       <div className='flex gap-6 justify-center'>
         <Link to="/jobs">
-          <Button variant="blue" size="xl" className='h-14'>Find Jobs</Button>
+          <Button variant="blue" size="xl" className='sm:w-full w-40'>Find Jobs</Button>
         </Link>
         <Link to="/post-job">
-          <Button variant="destructive" size="xl" className='h-14'>Post a Job</Button>
+          <Button variant="destructive" size="xl" className='sm:w-full w-40'>Post a Job</Button>
         </Link>
       </div>
 

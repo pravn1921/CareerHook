@@ -27,7 +27,7 @@ const Header = () => {
     <>
       <nav className='py-3 sm:py-4 flex flex-row justify-between items-center px-6 sm:px-10 md:px-14 lg:px-20 sticky top-0 backdrop-blur-2xl shadow-lg z-10'>
         <Link to='/'>
-          <img src='\careerhooklogo.png' alt='Logo' className='h-[75px] opacity-95' />
+          <img src='\careerhooklogo.png' alt='Logo' className='h-[60px] sm:h-[75px] opacity-95' />
         </Link>
 
         <div className='flex gap-5'>
